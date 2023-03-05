@@ -4,7 +4,7 @@ import {createRouter} from 'vue-router'
 import { routes } from './components/config/routes'
 import { history } from './shared/history'
 
-const router = createRouter({ history, routes})
+const router = createRouter({ history,routes})
 
 const app = createApp(App)
 app.use(router)
