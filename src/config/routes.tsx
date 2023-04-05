@@ -4,6 +4,10 @@ import { First } from "../components/welcome/First";
 import { Fourth } from "../components/welcome/Fourth";
 import { Second } from "../components/welcome/Second";
 import { Third } from "../components/welcome/Third";
+import { FourthActions } from "../components/welcome/FourthAction";
+import { ThirdActions } from "../components/welcome/ThirdAction";
+import { SecondActions } from "../components/welcome/SecondAction";
+import { FirstActions } from "../components/welcome/FirstAction";
 
 
 export const routes: RouteRecordRaw[] = [
@@ -12,10 +16,10 @@ export const routes: RouteRecordRaw[] = [
     component: Welcome,
     children: [
       { path: '', redirect: '/welcome/1'},
-      { path: '1', component: First },
-      { path: '2', component: Second },
-      { path: '3', component: Third },
-      { path: '4', component: Fourth },
+      { path: '1', components: { main: First, footer: FirstActions }, },
+      { path: '2', components: { main: Second, footer: SecondActions }, },
+      { path: '3', components: { main: Third, footer: ThirdActions }, },
+      { path: '4', components: { main: Fourth, footer: FourthActions }, },
     ]
   },
   {
