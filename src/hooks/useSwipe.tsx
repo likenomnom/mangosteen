@@ -44,6 +44,7 @@ export const useSwipe = (element: Ref<HTMLElement | undefined>, options?: Option
     }
   })
   const onStart = (e: TouchEvent) => {
+    e.preventDefault()
     swiping.value = true
     end.value = start.value = { x: e.touches[0].screenX, y: e.touches[0].screenY }
   }

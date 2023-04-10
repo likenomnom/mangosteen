@@ -8,6 +8,7 @@ import { FourthActions } from "../components/welcome/FourthAction";
 import { ThirdActions } from "../components/welcome/ThirdAction";
 import { SecondActions } from "../components/welcome/SecondAction";
 import { FirstActions } from "../components/welcome/FirstAction";
+import { StartPage } from "../views/StartPage";
 
 
 export const routes: RouteRecordRaw[] = [
@@ -32,5 +33,6 @@ export const routes: RouteRecordRaw[] = [
       { path: '3', component: Third },
       { path: '4', component: Fourth },
     ]
-  }
+  },
+  {path:'/start', component: StartPage}
 ]
