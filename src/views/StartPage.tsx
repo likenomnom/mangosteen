@@ -1,25 +1,42 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { Center } from '../shared/Center';
 import { FloatButton } from '../shared/FloatButton';
 import s from './StartPage.module.scss'
 import { Button } from '../shared/Button';
 import { Icon } from '../shared/Icon';
+import { Navbar } from '../shared/Navbar';
+import { Overlay } from '../shared/Overlay';
+import { MainLayout } from '../layouts/MainLayout';
+import { RouterLink } from 'vue-router';
 export const StartPage = defineComponent({
-  setup: (props, context) => {
-    const onClick = () => {
-      console.log('hi')
+  setup: (props, context) => {
+    const refOverlayVisible = ref(false)
+    const onClickMenu = () => {
+      refOverlayVisible.value = !refOverlayVisible.value
     }
-    return () => (
-      <div>
-        <nav>menu</nav>
-        <Center>
-          <Icon name="pig" class={s.pig}/>
-        </Center>
-          <div class={s.button_wrapper}>
-            <Button class={s.button} onClick={onClick}>测试</Button>
-          </div>
-          <FloatButton iconName='add'/>
-      </div>
-    )
-  }
+    return () => (
+      <MainLayout>{
+        {
+          title: () => '山竹记账',
+          icon: () => <Icon name="menu" class={s.navIcon} onClick={onClickMenu} />,
+          default: () => <>
+            <Center class={s.pig_wrapper}>
+              <Icon name="pig" class={s.pig} />
+            </Center>
+            <div class={s.button_wrapper}>
+              <RouterLink to="/items/create">
+                <Button class={s.button}>开始记账</Button>
+              </RouterLink>
+            </div>
+            <RouterLink to="/items/create">
+              <FloatButton iconName='add' />
+            </RouterLink>
+            {refOverlayVisible.value &&
+              <Overlay onClose={() => refOverlayVisible.value = false} />
+            }
+          </>
+        }
+      }</MainLayout>
+    )
+  }
 })

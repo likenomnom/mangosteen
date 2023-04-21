@@ -9,6 +9,14 @@ import { ThirdActions } from "../components/welcome/ThirdAction";
 import { SecondActions } from "../components/welcome/SecondAction";
 import { FirstActions } from "../components/welcome/FirstAction";
 import { StartPage } from "../views/StartPage";
+import { ItemList } from "../components/item/ItemList";
+import { ItemCreate } from "../components/item/ItemCreat";
+import { ItemPage } from "../views/ItemPage";
+import { TagPage } from "../views/TagPage";
+import { TagCreate } from "../components/tag/TagCreate";
+import { TagEdit } from "../components/tag/TagEdit";
+
+
 
 
 export const routes: RouteRecordRaw[] = [
@@ -34,5 +42,19 @@ export const routes: RouteRecordRaw[] = [
       { path: '4', component: Fourth },
     ]
   },
-  {path:'/start', component: StartPage}
+  {path:'/start', component: StartPage},
+  {
+    path: '/items', component: ItemPage,
+    children: [
+      { path: '', component: ItemList },
+      { path: 'create', component: ItemCreate },
+    ]
+  },
+  {
+    path: '/tags', component: TagPage,
+    children: [
+      {path: 'create', component: TagCreate},
+      {path: ':id', component: TagEdit}
+    ]
+  }
 ]
