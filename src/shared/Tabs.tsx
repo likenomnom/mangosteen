@@ -14,6 +14,7 @@ export const Tabs = defineComponent({
       required: false,
     }
   },
+  emits: ['update:selected'],
   setup: (props, context) => {
     return () => {
       const tabs = context.slots.default?.()
@@ -43,7 +44,6 @@ export const Tabs = defineComponent({
     }
   }
 })
-
 export const Tab = defineComponent({
   props: {
     name: {
