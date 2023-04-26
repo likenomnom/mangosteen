@@ -16,7 +16,7 @@ import { TagPage } from "../views/TagPage";
 import { TagCreate } from "../components/tag/TagCreate";
 import { TagEdit } from "../components/tag/TagEdit";
 import { SignInPage } from "../views/SignInPage";
-import { StatisticsPage } from "../views/statisticsPage";
+import { StatisticsPage } from "../views/StatisticsPage";
 
 
 
