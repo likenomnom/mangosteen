@@ -11,6 +11,7 @@ import { history } from '../shared/history';
 import { useRoute, useRouter } from 'vue-router';
 import { refreshMe } from '../shared/me';
 import { http } from '../shared/Http';
+import { BackIcon } from '../shared/BackIcon';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -67,7 +68,7 @@ export const SignInPage = defineComponent({
       <MainLayout>{
         {
           title: () => '登录',
-          icon: () => <Icon name="left" />,
+          icon: () => <BackIcon />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
