@@ -4,7 +4,7 @@ import { http } from '../../shared/Http';
 import { Icon } from '../../shared/Icon';
 import { useTags } from '../../shared/useTags';
 import s from './Tags.module.scss';
-import { RouterLink } from 'vue-router';
+import { RouterLink ,useRouter} from 'vue-router';
 export const Tags = defineComponent({
   props: {
     kind: {
