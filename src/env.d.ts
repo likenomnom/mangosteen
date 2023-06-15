@@ -31,6 +31,10 @@ type Item = {
   kind: expenses | income;
 };
 
+type User = {
+  id: number;
+  email: string;
+}
 type Resources<T = any> = {
   resources: T[]
   pager: {
