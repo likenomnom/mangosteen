@@ -1,21 +1,19 @@
-import { Overlay } from 'vant';
-import { Component, DefineComponent, defineComponent, PropType, reactive, ref } from 'vue';
-import { ItemSummary } from '../components/item/ItemSummary';
 import { Form, FormItem } from '../shared/Form';
-import { OverlayIcon } from '../shared/Overlay';
+import { Overlay, OverlayIcon } from '../shared/Overlay';
 import { Tab, Tabs } from '../shared/Tabs';
 import { Time } from '../shared/time';
 import s from './TimeTabsLayout.module.scss';
 import { MainLayout } from './MainLayout';
+import { PropType, defineComponent, reactive, ref } from 'vue';
 const demo = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required:  false
+      required: false
     },
     endDate: {
       type: String as PropType<string>,
-      required:  false
+      required: false
     }
   },
 })
@@ -24,6 +22,10 @@ export const TimeTabsLayout = defineComponent({
     component: {
       type: Object as PropType<typeof demo>,
       required: true
+    },
+    rerenderOnSwitchTab: {
+      type: Boolean,
+      default: false
     }
   },
   setup: (props, context) => {
@@ -69,7 +71,7 @@ export const TimeTabsLayout = defineComponent({
           icon: () => <OverlayIcon />,
           default: () => <>
             <Tabs classPrefix='customTabs' v-model:selected={refSelected.value}
-              onUpdate:selected={onSelect}>
+              onUpdate:selected={onSelect} rerenderOnSelect={props.rerenderOnSwitchTab}>
               <Tab name="本月">
                 <props.component
                   startDate={timeList[0].start.format()}
@@ -91,7 +93,7 @@ export const TimeTabsLayout = defineComponent({
                   endDate={customTime.end} />
               </Tab>
             </Tabs>
-            <Overlay show={refOverlayVisible.value} class={s.overlay} >
+            <Overlay show ={refOverlayVisible.value} class={s.overlay} >
               <div class={s.overlay_inner}>
                 <header>
                   请选择时间
