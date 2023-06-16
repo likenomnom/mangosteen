@@ -1,10 +1,10 @@
-import { Form, FormItem } from '../shared/Form';
-import { Overlay, OverlayIcon } from '../shared/Overlay';
-import { Tab, Tabs } from '../shared/Tabs';
-import { Time } from '../shared/time';
-import s from './TimeTabsLayout.module.scss';
-import { MainLayout } from './MainLayout';
-import { PropType, defineComponent, reactive, ref } from 'vue';
+import { Form, FormItem } from '../shared/Form'
+import { Overlay, OverlayIcon } from '../shared/Overlay'  
+import { Tab, Tabs } from '../shared/Tabs'
+import { Time } from '../shared/time'
+import s from './TimeTabsLayout.module.scss'
+import { MainLayout } from './MainLayout'
+import { PropType, defineComponent, reactive, ref } from 'vue'
 const demo = defineComponent({
   props: {
     startDate: {
@@ -15,7 +15,7 @@ const demo = defineComponent({
       type: String as PropType<string>,
       required: false
     }
-  },
+  }
 })
 export const TimeTabsLayout = defineComponent({
   props: {
@@ -24,6 +24,10 @@ export const TimeTabsLayout = defineComponent({
       required: true
     },
     rerenderOnSwitchTab: {
+      type: Boolean,
+      default: false
+    },
+    hideThisYear: {
       type: Boolean,
       default: false
     }
@@ -65,56 +69,73 @@ export const TimeTabsLayout = defineComponent({
       }
     }
     return () => (
-      <MainLayout>{
-        {
+      <MainLayout>
+        {{
           title: () => '山竹记账',
           icon: () => <OverlayIcon />,
-          default: () => <>
-            <Tabs classPrefix='customTabs' v-model:selected={refSelected.value}
-              onUpdate:selected={onSelect} rerenderOnSelect={props.rerenderOnSwitchTab}>
-              <Tab name="本月">
-                <props.component
-                  startDate={timeList[0].start.format()}
-                  endDate={timeList[0].end.format()} />
-              </Tab>
-              <Tab name="上月">
-                <props.component
-                  startDate={timeList[1].start.format()}
-                  endDate={timeList[1].end.format()} />
-              </Tab>
-              <Tab name="今年">
-                <props.component
-                  startDate={timeList[2].start.format()}
-                  endDate={timeList[2].end.format()} />
-              </Tab>
-              <Tab name="自定义时间">
-                <props.component
-                  startDate={customTime.start}
-                  endDate={customTime.end} />
-              </Tab>
-            </Tabs>
-            <Overlay show ={refOverlayVisible.value} class={s.overlay} >
-              <div class={s.overlay_inner}>
-                <header>
-                  请选择时间
-                </header>
-                <main>
-                  <Form onSubmit={onSubmitCustomTime}>
-                    <FormItem label='开始时间' v-model={tempTime.start} type='date' />
-                    <FormItem label='结束时间' v-model={tempTime.end} type='date' />
-                    <FormItem>
-                      <div class={s.actions}>
-                        <button type="button" onClick={() => refOverlayVisible.value = false}>取消</button>
-                        <button type="submit">确认</button>
-                      </div>
-                    </FormItem>
-                  </Form>
-                </main>
-              </div>
-            </Overlay>
-          </>
-        }
-      }</MainLayout>
+          default: () => (
+            <>
+              {props.hideThisYear ? (
+                <Tabs
+                  classPrefix="customTabs"
+                  v-model:selected={refSelected.value}
+                  onUpdate:selected={onSelect}
+                  rerenderOnSelect={props.rerenderOnSwitchTab}
+                >
+                  <Tab name="本月">
+                    <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
+                  </Tab>
+                  <Tab name="上月">
+                    <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()} />
+                  </Tab>
+                  <Tab name="自定义时间">
+                    <props.component startDate={customTime.start} endDate={customTime.end} />
+                  </Tab>
+                </Tabs>
+              ) : (
+                <Tabs
+                  classPrefix="customTabs"
+                  v-model:selected={refSelected.value}
+                  onUpdate:selected={onSelect}
+                  rerenderOnSelect={props.rerenderOnSwitchTab}
+                >
+                  <Tab name="本月">
+                    <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
+                  </Tab>
+                  <Tab name="上月">
+                    <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()} />
+                  </Tab>
+                  <Tab name="今年">
+                    <props.component startDate={timeList[2].start.format()} endDate={timeList[2].end.format()} />
+                  </Tab>
+                  <Tab name="自定义时间">
+                    <props.component startDate={customTime.start} endDate={customTime.end} />
+                  </Tab>
+                </Tabs>
+              )}
+              <Overlay show={refOverlayVisible.value} class={s.overlay}>
+                <div class={s.overlay_inner}>
+                  <header>请选择时间</header>
+                  <main>
+                    <Form onSubmit={onSubmitCustomTime}>
+                      <FormItem label="开始时间" v-model={tempTime.start} type="date" />
+                      <FormItem label="结束时间" v-model={tempTime.end} type="date" />
+                      <FormItem>
+                        <div class={s.actions}>
+                          <button type="button" onClick={() => (refOverlayVisible.value = false)}>
+                            取消
+                          </button>
+                          <button type="submit">确认</button>
+                        </div>
+                      </FormItem>
+                    </Form>
+                  </main>
+                </div>
+              </Overlay>
+            </>
+          )
+        }}
+      </MainLayout>
     )
   }
 })
