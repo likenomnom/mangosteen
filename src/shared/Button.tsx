@@ -30,7 +30,7 @@ export const Button = defineComponent({
     const _disabled = computed(() => {
       if(props.autoSelfDisabled === false){
         return props.disabled
-      }
+      }   
       if(selfDisabled.value){
         return true
       }else{
