@@ -4,7 +4,7 @@ import { FloatButton } from '../../shared/FloatButton'
 import { http } from '../../shared/Http'
 import s from './ItemSummary.module.scss'
 import { Money } from '../../shared/Money'
-import { Datetime } from '../../shared/Datetime'
+import s from './ItemSummary.module.scss'
 export const ItemSummary = defineComponent({
   props: {
     startDate: {
@@ -26,7 +26,9 @@ export const ItemSummary = defineComponent({
         happen_after: props.startDate,
         happen_before: props.endDate,
         page: page.value + 1,
+      }, {
         _mock: 'itemIndex',
+        _autoLoading: true,
       })
       const { resources, pager } = response.data
       items.value?.push(...resources)
@@ -40,7 +42,6 @@ export const ItemSummary = defineComponent({
       page.value = 0
       fetchItems()
     })
-
     const itemsBalance = reactive({
       expenses: 0, income: 0, balance: 0
     })
@@ -50,6 +51,7 @@ export const ItemSummary = defineComponent({
         happen_after: props.startDate,
         happen_before: props.endDate,
         page: page.value + 1,
+      }, {
         _mock: 'itemIndexBalance',
       })
       Object.assign(itemsBalance, response.data)
@@ -76,18 +78,18 @@ export const ItemSummary = defineComponent({
               </li>
               <li>
                 <span>净收入</span>
-                <span>39</span><Money value={itemsBalance.balance} />
+                <Money value={itemsBalance.balance} />
               </li>
             </ul>
             <ol class={s.list}>
               {items.value.map((item) => (
                 <li>
                   <div class={s.sign}>
-                  <span>{item.tags![0].sign}</span>
+                    <span>{item.tags![0].sign}</span>
                   </div>
                   <div class={s.text}>
                     <div class={s.tagAndAmount}>
-                    <span class={s.tag}>{item.tags![0].name}</span>
+                      <span class={s.tag}>{item.tags![0].name}</span>
                       <span class={s.amount}>￥<Money value={item.amount}/></span>
                     </div>
                     <div class={s.time}><Datetime value={item.happen_at}/></div>

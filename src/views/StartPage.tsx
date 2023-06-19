@@ -1,4 +1,5 @@
-import { defineComponent, ref } from 'vue';
+import { Toast } from 'vant';
+import { defineComponent, onMounted, ref } from 'vue';
 import { Center } from '../shared/Center';
 import { FloatButton } from '../shared/FloatButton';
 import s from './StartPage.module.scss'
@@ -10,6 +11,13 @@ import { RouterLink } from 'vue-router';
 import { Overlay, OverlayIcon } from '../shared/Overlay';
 export const StartPage = defineComponent({
   setup: (props, context) => {
+    onMounted(()=>{
+      // Toast.loading({
+      //   message: '加载中...',
+      //   forbidClick: true,
+      //   duration: 0
+      // });
+    })
     const refOverlayVisible = ref(false)
     const onClickMenu = () => {
       refOverlayVisible.value = !refOverlayVisible.value
