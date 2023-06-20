@@ -1,11 +1,11 @@
-import { useMeStore } from './stores/useMeStore';
+import { useMeStore } from './stores/useMestore';
 import { routes } from './config/routes';
 import { createApp } from 'vue'
 import { App } from './App'
 import { createRouter } from 'vue-router'
 import { history } from './shared/history';
 import '@svgstore';
-import { createPinia } from 'pinia';
+import { createPinia, storeToRefs } from 'pinia';
 
 const router = createRouter({ history, routes })
 const pinia = createPinia ()
@@ -15,6 +15,7 @@ app.use(pinia)
 app.mount('#app')
 
 const meStore = useMeStore()
+const {mePromise} = storeToRefs(meStore)
 meStore.fetchMe()
 
 
@@ -36,7 +37,7 @@ router.beforeEach((to, from) => {
       return true
     }
   }
-  return meStore.mePromise!.then(
+  return mePromise!.value!.then(
     () => true,
     () => '/sign_in?return_to=' + to.path
   )
