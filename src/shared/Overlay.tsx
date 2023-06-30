@@ -43,34 +43,41 @@ export const Overlay = defineComponent({
                 <h2>未登录用户</h2>
                 <p>点击这里登录</p>
               </RouterLink>
-               )}
-               </section>
-               <nav>
-                 <ul class={s.action_list}>
-                   <li>
-                     <RouterLink to="/statistics" class={s.action}>
-                       <Icon name="charts" class={s.icon} />
-                       <span>统计图表</span>
-                     </RouterLink>
-                   </li>
-                   <li>
-                     <RouterLink to="/export" class={s.action}>
-                       <Icon name="export" class={s.icon} />
-                       <span>导出数据</span>
-                     </RouterLink>
-                   </li>
-                   <li>
-                     <RouterLink to="/notify" class={s.action}>
-                       <Icon name="notify" class={s.icon} />
-                       <span>记账提醒</span>
-                     </RouterLink>
-                   </li>
-                 </ul>
-               </nav>
-             </div>
-           </>
-         )
-       },
+            )}
+          </section>
+          <nav>
+            <ul class={s.action_list}>
+              <li>
+                <RouterLink to="/items" class={s.action}>
+                  <Icon name="pig" class={s.icon} />
+                  <span>记账</span>
+                </RouterLink>
+              </li>
+
+              <li>
+                <RouterLink to="/statistics" class={s.action}>
+                  <Icon name="charts" class={s.icon} />
+                  <span>统计图表</span>
+                </RouterLink>
+              </li>
+              <li>
+                <RouterLink to="/export" class={s.action}>
+                  <Icon name="export" class={s.icon} />
+                  <span>导出数据</span>
+                </RouterLink>
+              </li>
+              <li>
+                <RouterLink to="/notify" class={s.action}>
+                  <Icon name="notify" class={s.icon} />
+                  <span>记账提醒</span>
+                </RouterLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </>
+    )
+  },
 })
 
 
