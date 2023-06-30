@@ -12,6 +12,7 @@ import { InputPad } from './InputPad'
 import s from './ItemCreate.module.scss'
 import { Tags } from './Tags'
 import { BackIcon } from '../../shared/BackIcon'
+import {validate, hasError} from '../../shared/validate'
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -63,6 +64,7 @@ export const ItemCreate = defineComponent({
           default: () => (
             <>
               <div class={s.wrapper}>
+                <Tabs>
               <Tab value="expenses" name="支出">
                     <Tags kind="expenses" v-model:selected={formData.tag_ids![0]} />
                   </Tab>

@@ -2,8 +2,8 @@ import { Dialog } from 'vant'
 import { defineComponent, onMounted, PropType, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { Icon } from './Icon'
-import { mePromise } from './me'
 import s from './Overlay.module.scss'
+import { useMeStore } from '../stores/useMeStore'
 export const Overlay = defineComponent({
   props: {
     onClose: {

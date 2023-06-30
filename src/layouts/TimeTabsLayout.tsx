@@ -1,10 +1,11 @@
 import { Form, FormItem } from '../shared/Form'
-import { Overlay, OverlayIcon } from '../shared/Overlay'  
+import { OverlayIcon } from '../shared/Overlay'  
 import { Tab, Tabs } from '../shared/Tabs'
 import { Time } from '../shared/time'
 import s from './TimeTabsLayout.module.scss'
 import { MainLayout } from './MainLayout'
 import { PropType, defineComponent, reactive, ref } from 'vue'
+import { Overlay } from 'vant'
 const demo = defineComponent({
   props: {
     startDate: {
