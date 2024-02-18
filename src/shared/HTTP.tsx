@@ -29,7 +29,7 @@ export class Http {
     return this.instance.request<R>({ ...config, url: url, params: query, method: 'delete' })
   }
 }
-export const http = new Http(DEBUG ? 'api/v1' : 'https://mangosteen-api.onmicrosoft.cn/api/v1')
+export const http = new Http(DEBUG ? 'api/v1' : 'https://down.onmicrosoft.cn/api/v1')
 
 http.instance.interceptors.request.use((config) => {
   const jwt = localStorage.getItem('jwt')

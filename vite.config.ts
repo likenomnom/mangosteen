@@ -47,7 +47,7 @@ export default defineConfig(({command}) => {
     server: {
       proxy: {
         '/api/v1': {
-          target: 'https://mangosteen-api.onmicrosoft.cn/',
+          target: 'https://down.onmicrosoft.cn/',
         }
       }
     },
