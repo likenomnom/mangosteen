@@ -64,7 +64,7 @@ export const ItemCreate = defineComponent({
           default: () => (
             <>
               <div class={s.wrapper}>
-                <Tabs>
+                <Tabs v-model:selected={formData.kind} class={s.tabs}>
               <Tab value="expenses" name="支出">
                     <Tags kind="expenses" v-model:selected={formData.tag_ids![0]} />
                   </Tab>

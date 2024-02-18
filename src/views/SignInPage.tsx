@@ -85,7 +85,6 @@ export const SignInPage = defineComponent({
                   onClick={onClickSendValidationCode}
                   v-model={formData.code} error={errors.code?.[0]} />
                 <FormItem style={{ paddingTop: '96px' }}>
-                  <Button>登录</Button>
                   <Button type="submit">登录</Button>
                 </FormItem>
               </Form>
