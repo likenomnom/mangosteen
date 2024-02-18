@@ -50,6 +50,7 @@ export default defineConfig(({command}) => {
           target: 'http://121.196.236.94:3000/',
         }
       }
-    }
+    },
+    base: "/mangosteen/dist/"
   }
 })
